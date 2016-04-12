@@ -50,7 +50,7 @@ import java.util.Vector;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
+
 
 public class GUI_Hauptanwenung extends JFrame {
 
@@ -110,7 +110,7 @@ public class GUI_Hauptanwenung extends JFrame {
 		spinner_schueler.setModel(new SpinnerNumberModel(10, 10, 300, 1));
 		
 		JSpinner spinner_angebote = new JSpinner();
-		spinner_angebote.setModel(new SpinnerNumberModel(new Integer(6), new Integer(2), null, new Integer(1)));
+		spinner_angebote.setModel(new SpinnerNumberModel(new Integer(6), new Integer(1), null, new Integer(1)));
 		
 		JSpinner spinner_block = new JSpinner();
 		spinner_block.setModel(new SpinnerNumberModel(4, 1, 5, 1));
@@ -158,12 +158,12 @@ public class GUI_Hauptanwenung extends JFrame {
 				if (int_spin_angebote!=int_row_angebote){
 					int_div_angebote =int_spin_angebote - int_row_angebote;
 					
-					if(int_div_angebote>=0){
+					if(int_div_angebote>0){
 						for(int i=1;i<=int_div_angebote;i++){
 								int betrag = model_angebote.getRowCount()+1;
 								model_angebote.addRow(new Object[]{betrag, null, null, null, null, null, null});	
 							}
-					}else if(int_div_angebote<=0){
+					}else if(int_div_angebote<0){
 						int_div_angebote=int_div_angebote *-1;
 						for(int i=1;i<=int_div_angebote;i++){
 								int r_angebote = model_angebote.getRowCount()-1;
@@ -367,18 +367,12 @@ public class GUI_Hauptanwenung extends JFrame {
 		table_angebote = new JTable();
 		table_angebote.setModel(new DefaultTableModel(
 			new Object[][] {
-				/*{new Integer(1), null, null, null, null, null, null, null},
+				{new Integer(1), null, null, null, null, null, null, null},
 				{new Integer(2), null, null, null, null, null, null, null},
 				{new Integer(3), null, null, null, null, null, null, null},
 				{new Integer(4), null, null, null, null, null, null, null},
 				{new Integer(5), null, null, null, null, null, null, null},
-				{new Integer(6), null, null, null, null, null, null, null},*/
-					{new Integer(1), 1, "eins", null, null, null, null, null},
-					{new Integer(2), 2, "zwei", null, null, null, null, null},
-					{new Integer(3), 3, "drei", null, null, null, null, null},
-					{new Integer(4), 4, "vier", null, null, null, null, null},
-					{new Integer(5), 5, "fuenf", null, null, null, null, null},
-					{new Integer(6), 6, "sechs", null, null, null, null, null},
+				{new Integer(6), null, null, null, null, null, null, null},
 			},
 			new String[] {
 				"Nr.", "Pl\u00E4tze", "Name", "1", "2", "3", "4", "5"
@@ -419,7 +413,7 @@ public class GUI_Hauptanwenung extends JFrame {
 		
 		
 
-			
+			int anzahl;
 			String message = "";
 			
 			DefaultTableModel model_angebote=(DefaultTableModel) table_angebote.getModel();
@@ -468,17 +462,8 @@ public class GUI_Hauptanwenung extends JFrame {
 		
 		
 		
-		for(int i=0;i<spin_angebote;i++){
-			
-			
-			System.out.println(table_angebote.getModel().getValueAt(i, 2));
-			
-		}
-			
-		
 		
 	}
-	
 		
 }
 
